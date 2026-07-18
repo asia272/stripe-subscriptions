@@ -1,15 +1,47 @@
 generator client {
   provider = "prisma-client"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
+}
+
+enum Plan {
+  free
+  premium
+}
+
+enum SubscriptionPeriod {
+  monthly
+  yearly
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
-  name      String?
-  image     String?
+  id         String  @id @default(cuid())
+  email      String  @unique
+  name       String?
+  image      String?
+  plan       Plan    @default(free)
+  customerId String? @unique
+
+  subscription Subscription?
+
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subscription {
+  id     String             @id @default(cuid())
+  userId String             @unique
+  plan   Plan
+  period SubscriptionPeriod
+
+  startDate DateTime @default(now())
+  endDate   DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
