@@ -1,5 +1,7 @@
-import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
+
+import { Hero } from "@/components/Hero";
+import { Pricing } from "@/components/Pricing";
+
 
 
 export default function Home() {
