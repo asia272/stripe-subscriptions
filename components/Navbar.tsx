@@ -2,7 +2,7 @@
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
 
 import { LogOut } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
+import ThemeToggle from "./ModeToggle";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
@@ -63,7 +63,7 @@ export const Navbar = () => {
                         {isAuthenticated && (
                             <Link
                                 rel='noreferrer noopener'
-                                href={process.env.NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL!}
+                                href="/"
                                 target='_blank'
                                 className={`text-[17px] ${buttonVariants({
                                     variant: "ghost",
@@ -111,7 +111,7 @@ export const Navbar = () => {
                             </Link>
                         )}
 
-                        <ModeToggle />
+                        <ThemeToggle />
                     </div>
                 </NavigationMenuList>
             </NavigationMenu>
