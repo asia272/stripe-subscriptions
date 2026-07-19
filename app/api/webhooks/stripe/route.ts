@@ -183,7 +183,9 @@ export async function POST(req: NextRequest) {
 
                 const customerId = subscription.customer as string;
 
-                const user = await prisma.user.findFirst({
+                console.log("Stripe Customer ID:", customerId);
+
+                const user = await prisma.user.findUnique({
                     where: {
                         customerId,
                     },
