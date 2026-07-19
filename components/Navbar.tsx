@@ -6,6 +6,8 @@ import ThemeToggle from "./ModeToggle";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { isUserSubscribed } from "@/app/actions/premium.action";
+import { useQuery } from "@tanstack/react-query";
 
 
 interface RouteProps {
@@ -30,6 +32,17 @@ const routeList: RouteProps[] = [
 
 export const Navbar = () => {
     const { isAuthenticated } = useKindeBrowserClient();
+
+    const {
+        data,
+        isLoading,
+        error,
+    } = useQuery({
+        queryKey: ["user-subscription"],
+        queryFn: isUserSubscribed,
+    });
+
+    const isSubscribed = data?.subscribed;
 
     return (
         <header
@@ -60,7 +73,7 @@ export const Navbar = () => {
                                 {route.label}
                             </Link>
                         ))}
-                        {isAuthenticated && (
+                        {isAuthenticated && isSubscribed && (
                             <Link
                                 rel='noreferrer noopener'
                                 href="/"
@@ -96,7 +109,7 @@ export const Navbar = () => {
                             </Link>
                         )}
 
-                        {isAuthenticated && (
+                        {isAuthenticated && isSubscribed && (
                             <Link
                                 rel='noreferrer noopener'
                                 href='/premium'
