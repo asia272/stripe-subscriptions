@@ -23,11 +23,9 @@ export async function POST(req: NextRequest) {
         );
 
         switch (event.type) {
-            /**
-             * ========================================
-             * CHECKOUT COMPLETED
-             * ========================================
-             */
+
+            //  CHECKOUT COMPLETED
+
             case "checkout.session.completed": {
                 const session = event.data.object as Stripe.Checkout.Session;
 
@@ -105,16 +103,15 @@ export async function POST(req: NextRequest) {
                     },
                 });
 
-                console.log("✅ Subscription Created");
+                console.log(" Subscription Created");
 
                 break;
             }
 
-            /**
-             * ========================================
-             * SUBSCRIPTION UPDATED
-             * ========================================
-             */
+
+            //  SUBSCRIPTION UPDATED
+
+
             case "customer.subscription.updated": {
                 const subscription = event.data.object as Stripe.Subscription;
 
@@ -168,16 +165,14 @@ export async function POST(req: NextRequest) {
                     },
                 });
 
-                console.log("✅ Subscription Updated");
+                console.log(" Subscription Updated");
 
                 break;
             }
 
-            /**
-             * ========================================
-             * SUBSCRIPTION DELETED
-             * ========================================
-             */
+
+            //  SUBSCRIPTION DELETED
+
             case "customer.subscription.deleted": {
                 const subscription = event.data.object as Stripe.Subscription;
 
