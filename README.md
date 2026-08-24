@@ -1,37 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+## 🔐 Environment Variables
 
-First, run the development server:
+Create a `.env.local` file in the project root and add the following environment variables.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 🗄️ Database
+
+```env
+DATABASE_URL="your_postgresql_database_url"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔑 Kinde Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+KINDE_CLIENT_ID="your_kinde_client_id"
+KINDE_CLIENT_SECRET="your_kinde_client_secret"
+KINDE_ISSUER_URL="your_kinde_issuer_url"
+KINDE_SITE_URL="http://localhost:3000"
+KINDE_POST_LOGOUT_REDIRECT_URL="http://localhost:3000"
+KINDE_POST_LOGIN_REDIRECT_URL="http://localhost:3000/auth/callback"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 💳 Stripe Payments
 
-## Learn More
+```env
+STRIPE_SECRET_KEY="your_stripe_secret_key"
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="your_stripe_publishable_key"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+STRIPE_WEBHOOK_SECRET="your_stripe_webhook_secret"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📅 Stripe Subscription Plans
 
-## Deploy on Vercel
+```env
+STRIPE_MONTHLY_PLAN_LINK="your_stripe_monthly_plan_link"
+STRIPE_YEARLY_PLAN_LINK="your_stripe_yearly_plan_link"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+STRIPE_MONTHLY_PRICE_ID="your_stripe_monthly_price_id"
+STRIPE_YEARLY_PRICE_ID="your_stripe_yearly_price_id"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# stripe-subscriptions
+NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL="your_stripe_customer_portal_url"
+```
+
+
+---
